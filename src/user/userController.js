@@ -23,24 +23,7 @@ exports.listUsers = async (req, res) => {
 
 exports.login = async (req, res) => {
     try {
-        const user = await User.findOne({ 
-            username: req.body.username 
-        });
-        if (user) {
-            const passwordMatch = await bcrypt.compare( 
-                req.body.password, 
-                user.password
-                );
-            if (passwordMatch) {
-                res.status(200).send({ message: "Your password is correct!" });
-            }
-            else {
-                res.status(400).send({ err: "Wrong password" });
-            }
-        }
-        else {
-            res.status(400).send({ err: "User does not exist" });
-        }
+        res.status(200).send({ user: req.user });
     } catch (error) {
         console.log(error);
         res.status(500).send({ err: error.message });
