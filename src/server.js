@@ -7,7 +7,7 @@ const userRouter = require("./user/userRoutes");
 
 // Setup
 const app = express();
-const port = process.env.PORT || 5002;
+const port = process.env.PORT || 5001;
 
 app.use(express.json());
 app.use(cors());
