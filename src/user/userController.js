@@ -1,4 +1,5 @@
-const bcrypt = require("bcryptjs/dist/bcrypt")
+const bcrypt = require("bcryptjs/dist/bcrypt");
+const res = require("express/lib/response");
 const User = require("./userModel");
 
     // add new user

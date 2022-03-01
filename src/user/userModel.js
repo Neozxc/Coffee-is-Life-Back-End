@@ -18,7 +18,17 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
-    }
+    },
+    url: {
+        type: String
+    },
+    reviews: [
+     { 
+        review: String,
+        review2: String,
+        review3: String
+     }
+    ]
 });
 
 // Export

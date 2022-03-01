@@ -4,6 +4,7 @@ require("./db/connection");
 const express = require("express");
 const cors = require("cors");
 const userRouter = require("./user/userRoutes");
+const reviewRouter = require("./reviews/reviewRoutes");
 
 // Setup
 const app = express();
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use(userRouter);
+app.use(reviewRouter);
 
 // Run
 app.listen(port, () => {
