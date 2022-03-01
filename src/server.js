@@ -5,6 +5,7 @@ const express = require("express");
 const cors = require("cors");
 const userRouter = require("./user/userRoutes");
 const shopRouter = require("./coffeeShops/shopRoutes");
+const reviewRouter = require("./reviews/reviewRoutes");
 
 // Setup
 const app = express();
@@ -18,6 +19,7 @@ app.use(cors());
 
 app.use(userRouter);
 app.use(shopRouter);
+app.use(reviewRouter);
 
 // Run
 app.listen(port, () => {
