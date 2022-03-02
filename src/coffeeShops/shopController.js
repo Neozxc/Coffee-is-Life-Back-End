@@ -30,3 +30,14 @@ exports.findShop = async (req, res) => {
 		res.status(500).send({ err: error.message });
 	}
 };
+
+exports.findOnlyReviews = async (req, res) => {
+    try {
+        // Shows name of the shop, author and his description
+        const reviewFound = await Shop.find({}).select("name reviews.username reviews.text");
+        res.status(200).send({ reviewFound });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({ err: err.message });
+    }
+}
