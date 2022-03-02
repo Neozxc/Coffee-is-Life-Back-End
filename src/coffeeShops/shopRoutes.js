@@ -6,6 +6,6 @@ shopRouter.post("/shop", addShop);
 
 shopRouter.get("/shop", listShops);
 
-shopRouter.get("/search", findShop);
+shopRouter.post("/shop/details", findShop);
 
 module.exports = shopRouter;
