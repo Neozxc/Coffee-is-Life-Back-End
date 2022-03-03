@@ -40,4 +40,14 @@ exports.findOnlyReviews = async (req, res) => {
         console.log(error);
         res.status(500).send({ err: err.message });
     }
-}
+};
+
+exports.deleteShop = async (req, res) => {
+	try {
+		const shop = await Shop.deleteOne(req.body);
+		res.status(200).send({ shop });
+	} catch (error) {
+		console.log(error);
+        res.status(500).send({ err: err.message });
+	}
+};
