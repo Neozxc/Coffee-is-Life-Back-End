@@ -28,6 +28,9 @@ const shopSchema = new mongoose.Schema({
             text: {
                 type: String,
                 required: true
+            },
+            rating: {
+                type: Number
             }
         }
     ]
