@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 
 const ReviewSchema = new mongoose.Schema({
-    author: {
+    username: {
         type: String,
         required: true
     },
 
-    description: {
+    text: {
         type: String,
         required: true
     },
