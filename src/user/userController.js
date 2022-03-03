@@ -1,11 +1,43 @@
 const bcrypt = require("bcryptjs/dist/bcrypt")
 const User = require("./userModel");
+const Review = require("../reviews/reviewModel");
 
     // add new user
+// exports.addUser = async (req, res) => {
+//     try {
+//         const newUser = await User.create(req.body);
+//         res.status(200).send({ user: newUser })
+//     } catch (error) {
+//         console.log(error);
+//         res.status(500).send({ err: error.message });
+//     }
+// };
+
+    // creates the new user linked to reviews
 exports.addUser = async (req, res) => {
     try {
-        const newUser = await User.create(req.body);
+        const newUser = await User.create({
+            username: req.body.username,
+            email: req.body.email,
+            password: req.body.password,
+            reviews: await Review.findOne({author: `${req.body.author}`})
+        });
         res.status(200).send({ user: newUser })
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({ err: error.message });
+    }
+};
+
+    // shows user with all his reviews
+exports.findUser = async (req, res) => {
+    try {
+        const users = await User.find({ username: req.body.username });
+        const reviews = await Review.find({username: `${req.body.username}`})
+        res.status(200).send({
+            users: users,
+            reviews: reviews
+        });
     } catch (error) {
         console.log(error);
         res.status(500).send({ err: error.message });
