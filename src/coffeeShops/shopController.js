@@ -1,8 +1,28 @@
 const Shop = require("./shopModel");
+const Review = require("../reviews/reviewModel");
+
+// exports.addShop = async (req, res) => {
+// 	try {
+// 		const newShop = await Shop.create(req.body);
+// 		res.status(200).send({ shop: newShop });
+// 	} catch (error) {
+// 		console.log(error);
+// 		res.status(500).send({ err: error.message });
+// 	}
+// };
 
 exports.addShop = async (req, res) => {
 	try {
-		const newShop = await Shop.create(req.body);
+		const newShop = await Shop.create({
+			name: req.body.name,
+			url: req.body.url,
+			location: req.body.location,
+			description: req.body.description,
+			reviews: [
+				req.body.reviews,
+				await Review.findOne({ name: `${req.body.name}` })
+			]
+		});
 		res.status(200).send({ shop: newShop });
 	} catch (error) {
 		console.log(error);
@@ -25,6 +45,20 @@ exports.findShop = async (req, res) => {
 		const shop = await Shop.findOne({ name: req.body.name });
 		console.log(shop)
 		res.status(200).send({ shop });
+	} catch (error) {
+		console.log(error);
+		res.status(500).send({ err: error.message });
+	}
+};
+
+exports.findShopReviews = async (req, res) => {
+	try {
+		const shop = await Shop.find({ name: req.body.name });
+		const reviews = await Review.find({ name: `${req.body.name}` });
+		res.status(200).send({
+			shop: shop,
+			reviews: reviews
+		 });
 	} catch (error) {
 		console.log(error);
 		res.status(500).send({ err: error.message });

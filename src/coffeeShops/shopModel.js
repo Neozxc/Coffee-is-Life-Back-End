@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Review = require("../reviews/reviewModel");
 
 const shopSchema = new mongoose.Schema({
     name: {
@@ -32,6 +33,11 @@ const shopSchema = new mongoose.Schema({
             rating: {
                 type: Number
             }
+        },
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: `${Review}`,
+            unique: false
         }
     ]
 });
