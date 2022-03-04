@@ -8,7 +8,7 @@ shopRouter.get("/shop", listShops);
 
 shopRouter.post("/shop/details", findShop);
 
-shopRouter.get("/findShop", findShopReviews);
+shopRouter.post("/findShop", findShopReviews);
 
 shopRouter.get("/found", findOnlyReviews);
 
