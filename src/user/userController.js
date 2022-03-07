@@ -1,5 +1,6 @@
 const bcrypt = require("bcryptjs/dist/bcrypt")
 const User = require("./userModel");
+const jwt = require("jsonwebtoken");
 const Review = require("../reviews/reviewModel");
 
     // add new user
@@ -22,7 +23,8 @@ exports.addUser = async (req, res) => {
             password: req.body.password,
             reviews: await Review.findOne({username: `${req.body.username}`})
         });
-        res.status(200).send({ user: newUser })
+        const token = jwt.sign({ _id: newUser._id}, process.env.SECRET);
+        res.status(200).send({ user: newUser, token });
     } catch (error) {
         console.log(error);
         res.status(500).send({ err: error.message });
@@ -57,7 +59,8 @@ exports.listUsers = async (req, res) => {
 
 exports.login = async (req, res) => {
     try {
-        res.status(200).send({ user: req.user });
+        const token = jwt.sign({ _id: User._id}, process.env.SECRET);
+        res.status(200).send({ user: req.user, token });
     } catch (error) {
         console.log(error);
         res.status(500).send({ err: error.message });

@@ -9,7 +9,7 @@ const reviewRouter = require("./reviews/reviewRoutes");
 
 // Setup
 const app = express();
-const port = process.env.PORT || 5002;
+const port = process.env.PORT || 5001;
 
 // For test
 app.get("/", (req, res) => res.send("Hello this is a test"));
