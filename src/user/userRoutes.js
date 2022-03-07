@@ -7,7 +7,7 @@ userRouter.post("/user", hashPassword, addUser);
 
 userRouter.get("/user", listUsers);
 
-userRouter.get("/findUser", findUser);
+userRouter.post("/findUser", findUser);
 
 userRouter.post("/login", decryptPassword, login);
 
