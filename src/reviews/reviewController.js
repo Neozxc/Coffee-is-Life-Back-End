@@ -22,16 +22,34 @@ exports.reviewList =  async (req, res) => {
 
 exports.updateReview = async (req, res) => {
     try {
-        const upReview = await Review.updateMany(
+        if (req.body.newname) {
+        const upReview = await Review.findByIdAndUpdate(
             {username: req.body.username},
-            {$set: {name: req.body.newName}},
-            {$set: {text:req.body.newText}},
-            {$set: {rating: req.body.newRating}}   
+            {name: req.body.name},
+            {text: req.body.text},
+            {$set: {name: req.body.newname}}  
+        );
+        res.status(200).send({ upReview })
+    } else if (req.body.newtext) {
+        const upReview = await Review.findByIdAndUpdate(
+            {username: req.body.username},
+            {name: req.body.name},
+            {text: req.body.text},
+            {$set: {text: req.body.newtext}}
         )
         res.status(200).send({ upReview })
-    } catch (error) { 
-        console.log(error);
-        res.status(500).send({ err: error.message})
+    } else if (req.body.newrating) {
+        const upReview = await Review.findOneAndUpdate(
+            {username: req.body.username},
+            {name: req.body.name},
+            {text: req.body.text},
+            {$set: {rating: req.body.newrating}}
+        )
+        res.status(200).send({ upReview })
+        }
+    } catch (error) {
+    console.log(error);
+    res.status(500).send({ err: error.message})
     }
 }
 

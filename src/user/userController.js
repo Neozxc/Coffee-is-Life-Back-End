@@ -23,11 +23,11 @@ exports.addUser = async (req, res) => {
             password: req.body.password,
             reviews: await Review.findOne({username: `${req.body.username}`})
         });
-        const token = jwt.sign({ _id: newUser._id}, process.env.SECRET);
-        res.status(200).send({ user: newUser, token });
+        const token = await jwt.sign({ _id: newUser._id}, process.env.SECRET);
+        res.status(200).send({ user: newUser.username, token });
     } catch (error) {
         console.log(error);
-        res.status(500).send({ err: error.message });
+        res.status(500).send({ error: error.message});
     }
 };
 
@@ -58,14 +58,14 @@ exports.listUsers = async (req, res) => {
 };
 
 exports.login = async (req, res) => {
-    try {
-        const token = jwt.sign({ _id: User._id}, process.env.SECRET);
+    try { 
+        const token = await jwt.sign({ _id: User._id}, process.env.SECRET);
         res.status(200).send({ user: req.user, token });
     } catch (error) {
         console.log(error);
         res.status(500).send({ err: error.message });
     }
-};
+}
 
     // update username
 exports.updateUser = async (req, res) => {
