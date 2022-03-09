@@ -31,3 +31,16 @@ exports.deleteReview = async (req, res) => {
 		res.status(500).send({ err: error.message });
 	}
 };
+
+// exports.updateReview = async (req, res) => {
+// 	try {
+// 		const patchReview = await Review.updateOne(
+// 			{ _id: req.body._id },
+// 			{ $set: { text: req.body.text } }
+// 		);
+// 		res.status(200).send({ patchReview });
+// 	} catch (error) {
+// 		console.log(error);
+// 		res.status(500).send({ err: error.message });
+// 	}
+// };
