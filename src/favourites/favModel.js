@@ -10,7 +10,11 @@ const FavouritesSchema = new mongoose.Schema({
 		required: true,
 		unique: true,
 	},
-	average: {
+	rating: {
+		type: Number,
+		required: true,
+	},
+	reviews: {
 		type: Number,
 		required: true,
 	},
