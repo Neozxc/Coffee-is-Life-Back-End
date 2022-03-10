@@ -24,7 +24,7 @@ exports.addUser = async (req, res) => {
             reviews: await Review.findOne({username: `${req.body.username}`})
         });
         const token = await jwt.sign({ _id: newUser._id}, process.env.SECRET);
-        res.status(200).send({ user: newUser.username, token });
+        res.status(200).send({ user: newUser, token });
     } catch (error) {
         console.log(error);
         res.status(500).send({ error: error.message});
