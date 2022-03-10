@@ -2,6 +2,7 @@ const bcrypt = require("bcryptjs/dist/bcrypt")
 const User = require("./userModel");
 const jwt = require("jsonwebtoken");
 const Review = require("../reviews/reviewModel");
+const Favourites = require("../favourites/favModel");
 
     // add new user
 // exports.addUser = async (req, res) => {
@@ -36,9 +37,11 @@ exports.findUser = async (req, res) => {
     try {
         const users = await User.find({ username: req.body.username });
         const reviews = await Review.find({username: `${req.body.username}`});
+        const favourites = await Favourites.find({username: `${req.body.username}`});
         res.status(200).send({
             users: users,
-            reviews: reviews
+            reviews: reviews,
+            favourites: favourites,
         });
     } catch (error) {
         console.log(error);
