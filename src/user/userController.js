@@ -66,7 +66,7 @@ exports.login = async (req, res) => {
         res.status(200).send({ user: req.user, token });
     } catch (error) {
         console.log(error);
-        res.status(500).send({ err: error.message });
+        res.status(500).send({ err: error.message, meg:"!!!!!!!!!! login controller" });
     }
 }
 

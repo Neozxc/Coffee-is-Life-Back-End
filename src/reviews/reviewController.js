@@ -34,7 +34,7 @@ exports.deleteReview = async (req, res) => {
 
 exports.updateReview = async (req, res) => {
 	try {
-		const patchReview = await Review.updateOne(
+		const patchReview = await Review.findByIdAndUpdate(
 			{ _id: req.body._id },
 			{ $set: { text: req.body.text } }
 		);
