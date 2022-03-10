@@ -11,7 +11,7 @@ userRouter.post("/findUser", findUser);
 
 userRouter.get("/token", tokenCheck, login);
 
-userRouter.post("/login", decryptPassword, login);
+userRouter.post("/login", decryptPassword, login, tokenCheck);
 
 userRouter.put("/user", updateUser);
 
