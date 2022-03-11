@@ -8,7 +8,6 @@ const FavouritesSchema = new mongoose.Schema({
 	name: {
 		type: String,
 		required: true,
-		unique: true,
 	},
 	rating: {
 		type: Number,
@@ -20,10 +19,9 @@ const FavouritesSchema = new mongoose.Schema({
 	},
 	url: {
 		type: String,
-		unique: true,
 	},
 });
 
-const Favourites = mongoose.model("CIL-User-Favourites", FavouritesSchema);
+const Favourites = mongoose.model("CIL-User-FavouriteShops", FavouritesSchema);
 
 module.exports = Favourites;
